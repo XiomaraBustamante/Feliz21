@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <title>Nuestro 1er Año – Victor❤️</title>
+  <style>
+    /* Fuentes solicitadas */
+    @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+    :root{
+      --rosa:#ff4d88;
+      --rosa-2:#ff82ab;
+      --claro:#fff7fb;
+      --card:#fff0f5;
+      --texto:#2b2b2b;
+      --sombra:0 8px 28px rgba(255,77,136,.22);
+      --radius:18px;
+      --trans:.35s ease;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#fff7fb 0%, #ffe8f1 100%);
+      color:var(--texto);
+      font-family:"Nunito", sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Corazones flotantes (capa detrás) */
+    .hearts-layer{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0}
+    .heart{position:absolute; bottom:-40px; font-size:18px; filter:drop-shadow(0 3px 6px rgba(0,0,0,.15));
+      animation:floatUp linear forwards; opacity:.9}
+    @keyframes floatUp{ to{ transform:translateY(-120vh) rotate(360deg); opacity:0}}
+
+    header{
+      position:relative; z-index:1;
+      padding:70px 20px 30px; text-align:center;
+    }
+    .title{font-family:"Tilt Warp", sans-serif; font-size:clamp(28px,5vw,52px); color:var(--rosa); margin:0}
+    .subtitle{margin:8px 0 0; opacity:.85}
+
+    .container{position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:20px}
+
+    /* Bloques / tarjetas */
+    .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--sombra); padding:24px; transition:transform var(--trans), box-shadow var(--trans)}
+    .card:hover{transform:translateY(-4px); box-shadow:0 14px 36px rgba(255,77,136,.28)}
+
+    /* Sección cuento */
+    .cuento h2, .timeline h2, .galeria h2, .contador h2, .musica h2, .carta h2{font-family:"Tilt Warp", sans-serif; color:var(--rosa); margin-top:0}
+    .cuento p{margin:0}
+
+    /* Carrusel */
+    .carousel{position:relative; overflow:hidden; border-radius:var(--radius)}
+    .carousel-track{display:flex; transition:transform var(--trans)}
+    .carousel img{width:100%; display:block; user-select:none}
+    .carousel button{position:absolute; top:50%; transform:translateY(-50%); border:none; background:#fff; color:var(--rosa); width:42px; height:42px; border-radius:999px; box-shadow:var(--sombra); cursor:pointer; transition:filter var(--trans), transform var(--trans)}
+    .carousel button:hover{filter:brightness(1.05); transform:translateY(-50%) scale(1.06)}
+    .prev{left:10px}
+    .next{right:10px}
+
+    /* Línea de tiempo vertical bonita */
+    .timeline{position:relative; padding:24px}
+    .timeline h2{text-align:center}
+    .line{position:absolute; left:calc(50% - 2px); top:0; bottom:0; width:4px; background:linear-gradient(#ffb2cc, var(--rosa))}
+    .t-item{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:28px 0}
+    .t-dot{position:absolute; left:calc(50% - 7px); top:10px; width:14px; height:14px; background:var(--rosa); border-radius:50%; box-shadow:0 0 0 6px #ffe3ee, 0 6px 16px rgba(255,77,136,.35)}
+    .t-card{background:var(--card); padding:16px 18px; border-radius:14px; box-shadow:var(--sombra); transition:transform var(--trans), box-shadow var(--trans)}
+    .t-card:hover{transform:translateY(-3px); box-shadow:0 16px 40px rgba(255,77,136,.30)}
+    .t-card h3{margin:0 0 6px; font-family:"Tilt Warp", sans-serif; color:var(--rosa)}
+    .t-left{grid-column:1}
+    .t-right{grid-column:2}
+    @media (max-width:800px){
+      .t-item{grid-template-columns:1fr;}
+      .t-left,.t-right{grid-column:1}
+      .line{left:10px}
+      .t-dot{left:3px}
+      .t-card{margin-left:28px}
+    }
+
+    /* Contador romántico */
+
+
+    /* Título centrado del contador */
+.contador-title {
+  text-align: center;
+  font-family: "Tilt Warp", sans-serif;
+  font-size: clamp(26px, 4vw, 25px);
+  color: var(--rosa);
+  margin-bottom: 18px;
+}
+
+    
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  text-align: center;
+}
+
+.tick {
+  background: linear-gradient(145deg, #fff, #ffe4ee);
+  border-radius: 20px;
+  padding: 20px 10px;
+  box-shadow: 0 6px 16px rgba(255, 77, 136, 0.25);
+  position: relative;
+  overflow: hidden;
+  animation: floaty 4s ease-in-out infinite;
+}
+
+.tick::before {
+  content: "❤";
+  position: absolute;
+  font-size: 28px;
+  color: rgba(255, 77, 136, 0.15);
+  top: -10px;
+  right: -5px;
+  transform: rotate(-20deg);
+}
+
+.tick .num {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  color: var(--rosa);
+  font-family: "Tilt Warp", sans-serif;
+  letter-spacing: 1px;
+  animation: pop 1s ease-in-out infinite alternate;
+}
+
+.tick .lbl {
+  margin-top: 6px;
+  opacity: 0.85;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #444;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pop {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+    /* Música */
+    .audio-wrap{display:flex; align-items:center; gap:14px}
+    .btn{appearance:none; border:none; background:var(--rosa); color:#fff; padding:12px 18px; border-radius:999px; cursor:pointer; box-shadow:var(--sombra); transition:transform var(--trans), filter var(--trans)}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.secondary{background:#fff; color:var(--rosa); border:2px solid var(--rosa)}
+
+    /* Carta modal */
+    .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.35); z-index:50}
+    .modal.active{display:grid; animation:fadeIn .25s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-card{background:linear-gradient(180deg,#fff,#ffe7ef); width:min(720px,92vw); border-radius:24px; padding:28px; box-shadow:0 24px 60px rgba(0,0,0,.25); transform:translateY(10px); animation:rise .35s ease forwards}
+    @keyframes rise{to{transform:translateY(0)}}
+    .modal-card h3{margin:0 0 10px; font-family:"Tilt Warp", sans-serif; color:var(--rosa); font-size:clamp(22px,3.2vw,34px)}
+    .modal-card p{margin:10px 0}
+    .close-x{position:absolute; top:14px; right:14px; border:none; background:#fff; color:var(--rosa); width:38px; height:38px; border-radius:999px; cursor:pointer; box-shadow:var(--sombra)}
+
+    /* Secciones grid */
+    .grid{display:grid; gap:22px}
+    @media (min-width:900px){ .grid-2{grid-template-columns:1.2fr .8fr} }
+
+    footer{padding:40px 20px; text-align:center; opacity:.8}
+    a{color:var(--rosa)}
+
+
+    /* --- Efecto máquina de escribir en título --- */
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid var(--rosa);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  animation: typing 3s steps(30, end), blink .75s step-end infinite;
+  display: inline-block;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+/* --- Confetti corazones --- */
+.confetti-heart {
+  position: fixed;
+  top: -20px;
+  font-size: 20px;
+  animation: fall 3.5s linear forwards;
+  pointer-events: none;
+  z-index: 2000;
+}
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Animación escritura en la carta --- */
+.write {
+  display: inline-block;
+  border-right: 2px solid var(--rosa);
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: blink .8s infinite;
+}
+  </style>
+</head>
+<body>
+  <!-- Capa de corazones -->
+  <div class="hearts-layer" aria-hidden="true"></div>
+
+  <header>
+    <h1 class="title typewriter">Nuestro 1er Año Juntos</h1>
+    <p class="subtitle">Un pequeño rincón para celebrar lo grande que ha sido nuestro primer año juntos.</p>
+  </header>
+
+  <main class="container">
+    <!-- Cuento + Carrusel al lado -->
+    <section class="grid grid-2"  data-aos="zoom-in">
+      <article class="card cuento">
+        <h2>Un Amor Que Nació Para Quedarse</h2>
+        <p>
+          Todo empezó con mensajes que iban y venían, sin saber que poquito a poquito se estaba armando algo tan bonito. No fue de un día para el otro, pero hubo algo en ti que me hizo sentir en casa desde el comienzo.
+Nos fuimos conociendo entre risas, conversaciones profundas, salidas que no queríamos que se terminen y momentos que se quedaban dando vueltas en la cabeza. Y sin darnos cuenta, ya estábamos eligiéndonos.
+
+El 21 de octubre de 2024 fue el día en que decidimos dar ese paso,sin miedo, sin prisa, pero con todas las ganas. Y desde entonces, estar contigo ha sido una de las decisiones más lindas que he tomado.
+
+Gracias por ser mi compañero en todo, por abrazarme incluso cuando no digo nada, por entenderme sin explicaciones y por hacer que lo simple se sienta especial.
+Este primer año ha sido una locura hermosa, y lo mejor es que sé que esto recién empieza.
+Contigo, todo se siente más claro, más fuerte, más yo.
+        </p>
+      </article>
+
+      <aside class="card galeria">
+        <h2>Nuestras Fotos</h2>
+        <div class="carousel" id="carousel">
+          <div class="carousel-track" >
+            <!-- Reemplaza los src por tus fotos -->
+            <img src="img/1.jpeg" alt="Foto 1" />
+            <img src="img/2.jpeg" alt="Foto 2"/>
+            <img src="img/3.jpeg" alt="Foto 3"/>
+            <img src="img/4.jpeg" alt="Foto 4"/>
+            <img src="img/5.jpeg" alt="Foto 5"/>
+            
+          </div>
+          <button class="prev" aria-label="Anterior">❮</button>
+          <button class="next" aria-label="Siguiente">❯</button>
+        </div>
+      </aside>
+    </section>
+
+   <!-- Contador -->
+<section class="card contador" style="margin-top:22px">
+  <h2 class="contador-title">Tiempo Juntos</h2>
+  <div class="counter-grid" id="counter" data-aos="flip-down">
+    <div class="tick">
+      <div class="num" id="days">0</div>
+      <div class="lbl">Días</div>
+    </div>
+    <div class="tick">
+      <div class="num" id="hours">00</div>
+      <div class="lbl">Horas</div>
+    </div>
+    <div class="tick">
+      <div class="num" id="minutes">00</div>
+      <div class="lbl">Minutos</div>
+    </div>
+    <div class="tick">
+      <div class="num" id="seconds">00</div>
+      <div class="lbl">Segundos</div>
+    </div>
+  </div>
+</section>
+
+    <!-- Línea de tiempo -->
+<section class="card timeline" style="margin-top:22px">
+  <h2>Línea de Tiempo de Nuestro Amor</h2>
+  <div class="line" aria-hidden="true"></div>
+
+  <div class="t-item" data-aos="fade-left">
+    <span class="t-dot"></span>
+    <div class="t-card t-left" >
+      <h3>2024 – Cuando llegue a Trilce</h3>
+      <p>Te vi por primera vez cuando llegue  trilce. Nos presentaron, y desde ese día tú tenías claro que te gustaba. Yo no. Para mí, eras simplemente un chico de mi mismo año, pero nada más. Pasaba el tiempo y no coincidíamos mucho. Éramos casi desconocidos caminando por el mismo pasillo, viviendo dos historias diferentes… sin saber que pronto se iban a cruzar.</p>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="t-item" data-aos="fade-right">
+    <span class="t-dot"></span>
+    <div></div>
+    <div class="t-card t-right">
+      <h3>Mediados de Octubre</h3>
+      <p>Un día, por cosas de la vida (y por alguien en común), te escribí por WhatsApp… queriéndome pelear, como siempre con mi genio, pero también pidiéndote un turrón (porque antojada siempre). Y así, de la nada, nació nuestra primera “salida”, si se le puede llamar así: fuimos al Tambo a comprarlo. A partir de ahí empezamos a hablar un poco más, pero yo seguía en plan: “aja, normal”. Tú ya sabías lo que querías, yo todavía no.</p>
+    </div>
+  </div>
+
+  <div class="t-item" data-aos="fade-left">
+    <span class="t-dot"></span>
+    <div class="t-card t-left" >
+      <h3>Finales de 2024</h3>
+      <p>Seguimos hablando, compartiendo más momentos, saliendo con personas en común… y sin darme cuenta, te fuiste volviendo parte de mis días. Te fuiste metiendo despacito, sin forzar nada, solo estando ahí. Yo te veía como un amigo, pero tú seguías enamorado. Y aunque no lo decía, algo en mí ya empezaba a notarlo.</p>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="t-item" data-aos="fade-right">
+    <span class="t-dot"></span>
+    <div></div>
+    <div class="t-card t-right">
+      <h3>Abril 2025 – La fiesta que lo cambió todo</h3>
+      <p>Ese día te vi diferente. Fue en la fiesta de un compañero, y aunque no pasó nada “grande”, sí pasó algo dentro de mí. Me llamaste la atención como nunca antes. Me quedé con esa sensación, como una pregunta sin respuesta. A partir de ahí, empezaron las dudas, los nervios, los momentos que ya no eran solo de amistad.</p>
+    </div>
+  </div>
+
+  <div class="t-item" data-aos="fade-left">
+    <span class="t-dot" ></span>
+    <div class="t-card t-left">
+      <h3>Entre el sí y el no</h3>
+      <p>Vivimos muchas cosas. Nos hicimos más cercanos, luego nos alejamos. Éramos amigos, pero también algo más. Yo no sabía bien lo que sentía, y tú seguías firme. Había risas, silencios, miradas que duraban más de lo normal. El corazón empezaba a hablar más fuerte, pero yo aún no lo quería escuchar.</p>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="t-item" data-aos="fade-right">
+    <span class="t-dot"></span>
+    <div></div>
+    <div class="t-card t-right">
+      <h3>La Playa – Toma de Fotos</h3>
+      <p>Ese viaje fue la respuesta a todas mis dudas. Coincidimos en el mismo bus, y aunque decimos que fue casualidad, ambos sabemos que no lo fue. Cambiamos de asiento para estar juntos, nos reíamos, me abrazaste… y ahí, en medio de todos los ruidos, risas de nuestros compañaeros me di cuenta de que estaba enamorada de ti. El primer beso oficial fue al regresar, en el parque. Y aunque no sabíamos lo que venía, ese momento ya era nuestro.</p>
+    </div>
+  </div>
+
+  <div class="t-item" data-aos="fade-left">
+    <span class="t-dot"></span>
+    <div class="t-card t-left">
+      <h3>Las veces que nos alejamos</h3>
+      <p>Después del beso no todo fue perfecto. Pasaron cosas. Nos alejamos, volvimos, dudamos, nos herimos un poquito. Pero también aprendimos. Cada paso nos enseñaba algo. Y por más que intentamos alejarnos, siempre había algo que nos volvía a juntar.</p>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="t-item" data-aos="fade-right">
+    <span class="t-dot"></span>
+    <div></div>
+    <div class="t-card t-right">
+      <h3>21 de Octubre de 2025</h3>
+      <p>Ese día decidimos dejar de dudar. Ese día empezamos oficialmente nuestra historia de amor. Nos elegimos de verdad, con ganas, con el corazón. Desde entonces, hemos pasado por todo: días buenos, días duros, abrazos que curan, peleas que duelen, y también momentos en los que casi nos rendimos. Pero no lo hicimos. Porque lo nuestro vale. Porque tú vales. Porque este amor es real. Hoy, un año después, solo puedo decir: gracias por seguir aquí. Por seguir conmigo.</p>
+    </div>
+  </div>
+</section>
+
+    
+
+
+
+
+
+
+    <!-- Música + Carta -->
+    <section class="grid grid-2" style="margin-top:22px">
+      <article class="card musica">
+        <h2>Nuestra Canción</h2>
+        <p style="margin-top:-6px">Reproduce <em>“Mi Niña Bonita”</em> 
+        </p>
+        <div class="audio-wrap">
+          <button class="btn" id="playPause">Reproducir / Pausar ♪</button>
+          <audio id="player">
+            <!-- Reemplaza el src por tu archivo local o URL válida de la canción -->
+            <source src="audio/chino y nacho  mi niña bonita  letra.mp3" type="audio/mpeg" />
+          </audio>
+          <button class="btn secondary" id="mute">Silencio</button>
+        </div>
+      </article>
+
+      <aside class="card carta">
+        <h2>Una Carta Para Ti</h2>
+        <p>Presiona el botón para leer mi carta.</p>
+        <button class="btn" id="openLetter">Leer mi carta para ti 💌</button>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Modal Carta -->
+  <div class="modal" id="letterModal" aria-hidden="true" role="dialog" aria-label="Carta romántica">
+    <div class="modal-card">
+      <button class="close-x" id="closeLetter" aria-label="Cerrar">✕</button>
+      <h3>Feliz #21 mi amor</h3>
+<p>
+  <span id="typedLetter" class="write"></span>
+</p>
+
+    </div>
+  </div>
+
+  <footer>
+    Hecho con amor para nuestro aniversario· <span>💗</span>
+  </footer>
+
+  <script>
+    // === Corazones flotantes ===
+    const layer = document.querySelector('.hearts-layer');
+    const heartChars = ['❤','💖','💗','💓','💞'];
+    function spawnHeart(){
+      const span = document.createElement('span');
+      span.className='heart';
+      span.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+      const size = Math.random()*20 + 12; // 12-32px
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.fontSize = size + 'px';
+      const duration = Math.random()*6 + 8; // 8-14s
+      span.style.animationDuration = duration + 's';
+      layer.appendChild(span);
+      setTimeout(()=> span.remove(), duration*1000);
+    }
+    setInterval(spawnHeart, 800);
+    for(let i=0;i<20;i++) setTimeout(spawnHeart, i*200);
+
+    // === Carrusel ===
+    const carousel = document.getElementById('carousel');
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let index = 0;
+
+    function updateCarousel(){
+      const width = carousel.clientWidth;
+      track.style.transform = `translateX(${-index*width}px)`;
+    }
+    window.addEventListener('resize', updateCarousel);
+
+    nextBtn.addEventListener('click',()=>{ index = (index+1)%slides.length; updateCarousel(); });
+    prevBtn.addEventListener('click',()=>{ index = (index-1+slides.length)%slides.length; updateCarousel(); });
+
+    // Swipe táctil
+    let startX = 0; let delta = 0;
+    track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; delta=0;}, {passive:true});
+    track.addEventListener('touchmove', e=>{ delta = e.touches[0].clientX - startX; }, {passive:true});
+    track.addEventListener('touchend', ()=>{ if(Math.abs(delta)>50){ if(delta<0) nextBtn.click(); else prevBtn.click(); } });
+
+    // === Contador desde 21 Oct 2024 ===
+    const startDate = new Date('2024-10-21T00:00:00');
+    const $d = document.getElementById('days');
+    const $h = document.getElementById('hours');
+    const $m = document.getElementById('minutes');
+    const $s = document.getElementById('seconds');
+
+    function updateCounter(){
+      const now = new Date();
+      let diff = Math.max(0, now - startDate);
+      const days = Math.floor(diff / (1000*60*60*24));
+      diff -= days*(1000*60*60*24);
+      const hours = Math.floor(diff / (1000*60*60));
+      diff -= hours*(1000*60*60);
+      const minutes = Math.floor(diff / (1000*60));
+      diff -= minutes*(1000*60);
+      const seconds = Math.floor(diff / 1000);
+      $d.textContent = days; $h.textContent = hours.toString().padStart(2,'0');
+      $m.textContent = minutes.toString().padStart(2,'0'); $s.textContent = seconds.toString().padStart(2,'0');
+    }
+    updateCounter(); setInterval(updateCounter, 1000);
+
+    // === Música ===
+    const player = document.getElementById('player');
+    const playPause = document.getElementById('playPause');
+    const mute = document.getElementById('mute');
+
+    playPause.addEventListener('click', async ()=>{
+      try{
+        if(player.paused){ await player.play(); } else { player.pause(); }
+      }catch(err){ console.warn('Agrega un src válido al <audio> para reproducir.'); }
+    });
+    mute.addEventListener('click', ()=> player.muted = !player.muted);
+
+    // === Carta (modal) ===
+    const openLetter = document.getElementById('openLetter');
+    const modal = document.getElementById('letterModal');
+    const closeLetter = document.getElementById('closeLetter');
+
+    function openModal(){ modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); }
+    function closeModal(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); }
+
+    openLetter.addEventListener('click', openModal);
+    closeLetter.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+    // Inicializa carrusel al ancho
+    updateCarousel();
+
+
+
+    // === Confetti de corazones (una vez al cargar) ===
+function launchConfettiHearts(){
+  const hearts = ['❤','💖','💗','💓','💞'];
+  for(let i=0;i<25;i++){
+    setTimeout(()=>{
+      const heart = document.createElement('div');
+      heart.className = 'confetti-heart';
+      heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+      heart.style.left = Math.random()*100 + 'vw';
+      heart.style.fontSize = (Math.random()*20+16) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(), 4000);
+    }, i*150);
+  }
+}
+window.addEventListener('load', launchConfettiHearts);
+
+// === Animación escritura de la carta ===
+const typedLetter = document.getElementById("typedLetter");
+const letterText = `Gracias por llegar a mi vida y quedarte, incluso cuando las cosas no fueron fáciles. 
+Contigo descubrí lo que significa amar de verdad: estar, sostener, reír, llorar, sanar. 
+
+Te amo con mi vida, Víctor. Te amo en tus días buenos y en los no tan buenos. 
+Prometo seguir creciendo contigo, cuidándote, admirándote y eligiéndote una y otra vez. 
+
+Este primer año ha sido una montaña rusa de emociones, 
+pero lo volvería a vivir mil veces si es contigo. 💖
+
+Con todo mi corazón, tu chanchita 💕`;
+
+function typeText(element, text, speed=40){
+  let i = 0;
+  element.textContent = "";
+  const timer = setInterval(()=>{
+    element.textContent += text.charAt(i);
+    i++;
+    if(i >= text.length){
+      clearInterval(timer);
+      element.style.borderRight = "none"; // quita cursor al final
+    }
+  }, speed);
+}
+
+// Reemplaza openLetter.addEventListener de tu código actual:
+openLetter.addEventListener('click', ()=> {
+  openModal();
+  typeText(typedLetter, letterText, 35);
+});
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1200,  // duración de la animación
+    once: true       // animar solo la primera vez
+  });
+</script>
+  
+</body>
+</html>
+
